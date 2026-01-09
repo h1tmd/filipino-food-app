@@ -23,6 +23,8 @@ class ProfileSetUpUtil {
   // Survey (from UserSurvey)
   final String? survey; // Store selected option string
 
+  final String? profilePic;
+
   ProfileSetUpUtil({
     required this.userId,
     this.email,
@@ -35,6 +37,7 @@ class ProfileSetUpUtil {
     this.caloricLimit,
     this.dietaryRestrictions,
     this.survey,
+    this.profilePic,
   });
 
   // Helper for copying with new values
@@ -49,6 +52,7 @@ class ProfileSetUpUtil {
     double? caloricLimit,
     List<String>? dietaryRestrictions,
     String? survey,
+    String? profilePic,
   }) {
     return ProfileSetUpUtil(
       userId: userId, // userId should not change
@@ -62,6 +66,7 @@ class ProfileSetUpUtil {
       caloricLimit: caloricLimit ?? this.caloricLimit,
       dietaryRestrictions: dietaryRestrictions ?? this.dietaryRestrictions,
       survey: survey ?? this.survey,
+      profilePic: profilePic ?? this.profilePic,
     );
   }
 
@@ -79,6 +84,7 @@ class ProfileSetUpUtil {
       'caloricLimit': caloricLimit,
       'dietaryRestrictions': dietaryRestrictions,
       'survey': survey,
+      'profilePic': profilePic,
       'lastUpdated':
           FieldValue.serverTimestamp(), // Automatically record update time
     };
@@ -100,6 +106,7 @@ class ProfileSetUpUtil {
           ?.map((e) => e.toString())
           .toList(),
       survey: data['survey'],
+      profilePic: data['profilePic'],
     );
   }
 }
