@@ -20,6 +20,7 @@ class ProfileDataStoring extends ChangeNotifier {
   bool _isLoading = true;
   String? _survey;
   String? _userId;
+  String? _profilePic;
 
   late final StreamSubscription<User?> _authStateChangesSubscription;
 
@@ -35,6 +36,7 @@ class ProfileDataStoring extends ChangeNotifier {
   String? get surevey => _survey;
   bool get isLoading => _isLoading;
   String? get userId => _userId;
+  String? get profilePic => _profilePic;
 
   ProfileDataStoring() {
     _authStateChangesSubscription =
@@ -82,6 +84,7 @@ class ProfileDataStoring extends ChangeNotifier {
         final Timestamp? birthdayTimestamp = userData["birthday"] as Timestamp?;
         _birthday = birthdayTimestamp?.toDate();
         _userId = userData["userId"] ?? "N/A UserID";
+        _profilePic = userData["profilePic"];
       } else {
         // This case would mean a user is authenticated but no profile document exists
         // (e.g., if they were created before profile setup was completed or if there's a data sync issue)
@@ -118,6 +121,7 @@ class ProfileDataStoring extends ChangeNotifier {
       _goals = [];
       _survey = null;
       _userId = "Error no UserID";
+      _profilePic = null;
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -173,6 +177,7 @@ class ProfileDataStoring extends ChangeNotifier {
     _survey = null;
     _isLoading = false;
     _userId = "Error no UserID";
+    _profilePic = null;
     notifyListeners();
   }
 
